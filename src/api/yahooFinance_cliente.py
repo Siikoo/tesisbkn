@@ -3,19 +3,26 @@ import pandas as pd
 
 # Configurar el símbolo del Bitcoin y el rango de fechas
 symbol = 'BTC-USD'
-start_date = '2010-01-01'
+start_date = '2022-06-02'
 end_date = '2023-06-01'
 
 # Obtener los datos históricos del Bitcoin desde Yahoo Finance
 data = yf.download(symbol, start=start_date, end=end_date)
 
-# Seleccionar solo la columna 'Close' (precio de cierre)
-data = data['Close']
+# Seleccionar las columnas deseadas
+columns = ['Open', 'High', 'Low', 'Close', 'Adj Close', 'Volume']
+data = data[columns]
 
-# Revertir el orden de los datos para tener la fecha más antigua primero
-data = data.iloc[::-1]
+# Formatear los valores en las columnas excepto 'Volume' a 6 decimales
+decimal_columns = ['Open', 'High', 'Low', 'Close', 'Adj Close']
+data[decimal_columns] = data[decimal_columns].applymap(lambda x: '{:.6f}'.format(x))
+
+
+# Ruta de salida del archivo CSV
+output_folder = 'C:/Users/Alonso Nadeau/Documents/GitHub/tesisbkn/src/api/csv/'
+output_path = output_folder + 'bitcoinYahooBKN.csv'
 
 # Guardar los datos en un archivo CSV
-data.to_csv('bitcoin.csv', header=['Precio de Cierre'])
+data.to_csv(output_path)
 
-print('Datos guardados exitosamente en bitcoin.csv')
+print('bitcoinYahooBKN.csv guardado exitosamente en ' + output_path)
