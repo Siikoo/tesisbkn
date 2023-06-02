@@ -17,12 +17,11 @@ data = data[columns]
 decimal_columns = ['Open', 'High', 'Low', 'Close', 'Adj Close']
 data[decimal_columns] = data[decimal_columns].applymap(lambda x: '{:.6f}'.format(x))
 
-
 # Ruta de salida del archivo CSV
 output_folder = 'C:/Users/Alonso Nadeau/Documents/GitHub/tesisbkn/src/api/csv/'
-output_path = output_folder + 'bitcoinYahooBKN.csv'
+output_path = output_folder + 'bitcoinYahoo.csv'
 
 # Guardar los datos en un archivo CSV
 data.to_csv(output_path)
 
-print('bitcoinYahooBKN.csv guardado exitosamente en ' + output_path)
+print('bitcoinYahoo.csv guardado exitosamente en ' + output_path)
