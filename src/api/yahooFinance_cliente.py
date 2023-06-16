@@ -3,8 +3,8 @@ import pandas as pd
 
 # Configurar el símbolo del Bitcoin y el rango de fechas
 symbol = "BTC-USD"
-start_date = "2016-06-12"
-end_date = "2023-06-01"
+start_date = "2012-06-12"
+end_date = "2023-06-11"
 
 # Obtener los datos históricos del Bitcoin desde Yahoo Finance
 data = yf.download(symbol, start=start_date, end=end_date)
